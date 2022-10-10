@@ -6,9 +6,9 @@ class KMeanPredict:
     def __init__(self):
         self.centers = np.load('models/centers.npy')
         self.normalize_info = np.load('models/normalize_info.npy')
-        self.classes_name = {0: 'Hơi thừa cân.', 1: 'Hơi thiếu cân.', 2: 'Thân hình chuẩn'}
+        self.classes_name = {0: 'Hơi thừa cân', 1: 'Hơi thiếu cân', 2: 'Thân hình chuẩn'}
 
-        # print('centers:', self.center)
+        # print('centers:', self.centers)
 
     def normalization(self, x):
         x = np.array(x, dtype=np.float32)
@@ -26,7 +26,7 @@ class KMeanPredict:
 
 if __name__ == '__main__':
     _x_new = [175, 700]
-    print('Chiều cao: ', _x_new[0])
-    print('Cân nặng: ', _x_new[1])
+    print('Chiều cao:', _x_new[0])
+    print('Cân nặng:', _x_new[1])
     k_mean_pred = KMeanPredict()
     k_mean_pred.predict(x_new=_x_new)

@@ -24,12 +24,13 @@ class Preprocessing:
             min_d = np.min(self.data_np[:, d])
             max_d = np.max(self.data_np[:, d])
             normalize_info.append([min_d, max_d])
-            self.data_np[:, d] = (self.data_np[:, d] - min_d) / (
-                    max_d - min_d)
+            self.data_np[:, d] = (self.data_np[:, d] - min_d) / (max_d - min_d)
+
         np.save('models/normalize_info', np.array(normalize_info))
 
     def get_train_data(self):
         self.normalization()
+
         return self.data_np
 
     @staticmethod
@@ -50,3 +51,5 @@ if __name__ == '__main__':
     pp.normalization()
     print(pp.data_np.dtype)
     pp.plot_raw()
+
+

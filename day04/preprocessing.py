@@ -5,7 +5,7 @@ import numpy as np
 
 class Preprocessing:
     def __init__(self):
-        data_path = 'datasets/the_trang_kmeans.csv'
+        data_path = 'datasets/the_trang_linear_regression.csv'
         self.data = pd.read_csv(data_path)
         self.data_np = self.data.values
 
@@ -24,12 +24,13 @@ class Preprocessing:
             min_d = np.min(self.data_np[:, d])
             max_d = np.max(self.data_np[:, d])
             normalize_info.append([min_d, max_d])
-            self.data_np[:, d] = (self.data_np[:, d] - min_d) / (
-                    max_d - min_d)
+            self.data_np[:, d] = (self.data_np[:, d] - min_d) / (max_d - min_d)
+
         np.save('models/normalize_info', np.array(normalize_info))
 
     def get_train_data(self):
         self.normalization()
+
         return self.data_np
 
     @staticmethod
@@ -43,6 +44,11 @@ class Preprocessing:
         plt.plot(centers[:, 0], centers[:, 1], 'rx')
         plt.show()
 
+    def plot_line(self, X, x_draw, y_draw):
+        plt.scatter(X[:, 0], X[:, 1])
+        plt.plot(x_draw, y_draw, 'g')
+        plt.show()
+
 
 if __name__ == '__main__':
     pp = Preprocessing()
@@ -50,3 +56,5 @@ if __name__ == '__main__':
     pp.normalization()
     print(pp.data_np.dtype)
     pp.plot_raw()
+
+

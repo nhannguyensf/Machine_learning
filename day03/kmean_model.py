@@ -39,7 +39,7 @@ class KMean:
             centers = new_centers
 
         np.save('models/centers.npy', centers)
-        print('Centers saved')
+        print('Done!')
 
 
 if __name__ == '__main__':
